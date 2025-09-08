@@ -18,6 +18,7 @@ const rightBtn = document.querySelector(".carousel-button-right");
 const carouselTrack = document.querySelector(".carousel-track");
 const allSlides = document.querySelectorAll(".carousel-slide");
 const dots = document.querySelectorAll(".dot");
+  let slideWidth = allSlides[0].getBoundingClientRect().width;
 leftBtn.addEventListener("click", function () {
   moveToPrevSlide();
 });
@@ -46,14 +47,23 @@ function moveToPrevSlide() {
   }
     dots.forEach(dot => dot.classList.remove('active'));
 dots[currentIndex].classList.add('active');
-  let slideWidth = allSlides[0].getBoundingClientRect().width;
+
   carouselTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
 }
-// function dotsClickable(){
-// dots.forEach((dot,index)=>{
-// dot.addEventListener("click",function(){
-//   currentIndex = index
-// })
-// })
-// }
+function dotsClickable(){
+dots.forEach((dot,index)=>{
+dot.addEventListener("click",function(){
+  currentIndex = index
+    carouselTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+     dots.forEach(dot => dot.classList.remove('active'));
+dots[currentIndex].classList.add('active');
+})
+})
+}
 
+dotsClickable()
+
+function advanceautomatic(){
+    setInterval(moveToNextSlide,5000)
+}
+advanceautomatic()
