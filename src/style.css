@@ -41,3 +41,22 @@
 .carousel-button-right {
   right: 10px;
 }
+.dots-container{
+display: flex;
+justify-content: center;
+align-items: center;
+gap:10px;
+}
+.dot {
+  height: 25px;
+  width: 25px;
+
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot.active{
+
+     background-color: #717171;
+
+}

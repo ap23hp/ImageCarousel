@@ -17,7 +17,7 @@ const leftBtn = document.querySelector(".carousel-button-left");
 const rightBtn = document.querySelector(".carousel-button-right");
 const carouselTrack = document.querySelector(".carousel-track");
 const allSlides = document.querySelectorAll(".carousel-slide");
-
+const dots = document.querySelectorAll(".dot");
 leftBtn.addEventListener("click", function () {
   moveToPrevSlide();
 });
@@ -27,9 +27,12 @@ rightBtn.addEventListener("click", function () {
 });
 function moveToNextSlide() {
   currentIndex = currentIndex + 1;
+
   if (currentIndex >= allSlides.length) {
     currentIndex = 0;
   }
+  dots.forEach(dot => dot.classList.remove('active'));
+dots[currentIndex].classList.add('active');
   let slideWidth = allSlides[0].getBoundingClientRect().width;
   carouselTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
 } //→ moves to the next slide
@@ -37,9 +40,20 @@ function moveToNextSlide() {
 function moveToPrevSlide() {
   //→ moves to the previous slide
   currentIndex = currentIndex - 1;
+
   if (currentIndex < 0) {
     currentIndex = allSlides.length - 1;
   }
+    dots.forEach(dot => dot.classList.remove('active'));
+dots[currentIndex].classList.add('active');
   let slideWidth = allSlides[0].getBoundingClientRect().width;
   carouselTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
 }
+// function dotsClickable(){
+// dots.forEach((dot,index)=>{
+// dot.addEventListener("click",function(){
+//   currentIndex = index
+// })
+// })
+// }
+
